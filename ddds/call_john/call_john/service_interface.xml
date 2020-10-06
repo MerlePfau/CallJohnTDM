@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service_interface>
+
+  <action name="make_call">
+    <parameters>
+      <parameter predicate="contact_to_call" format="value"/>
+      <parameter predicate="phone_type_to_call" format="value"/>
+    </parameters>
+    <failure_reasons/>
+    <target>
+      <http endpoint="http://http-service/make_call"/>
+    </target>
+  </action>
+  
+  <query name="phone_number_of_contact">
+    <parameters>
+      <parameter predicate="contact_to_call" format="value"/>
+      <parameter predicate="phone_type_to_call" format="value"/>
+    </parameters>
+    <target>
+      <http endpoint="http://http-service/get_number"/>
+    </target>
+  </query>
+
+</service_interface>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar>
+  <action name="top">
+    <one-of>
+      <item>main menu</item>
+      <item>top</item>
+      <item>beginning</item>
+      <item>cancel</item>
+      <item>forget it</item>
+      <item>never mind</item>
+      <item>abort</item>
+    </one-of>
+  </action>
+
+  <action name="up">
+    <one-of>
+      <item>up</item>
+      <item>back</item>
+      <item>go back</item>
+    </one-of>
+  </action>
+
+  <action name="make_call">
+    <one-of>
+	  <item>call</item>
+      <item>make a call</item>
+	  <item>call <slot predicate="contact_to_call" type="individual"/></item>
+      <item>call <slot predicate="contact_to_call" type="individual"/> <slot predicate="phone_type_to_call" type="individual"/></item>
+      <item>call <slot predicate="contact_to_call" type="individual"/>'s <slot predicate="phone_type_to_call" type="individual"/></item>
+    </one-of>
+  </action>
+
+  <question type="wh_question" predicate="phone_number_of_contact" speaker="user">
+    <one-of>
+      <item>I want to know a contact's number</item>
+	  <item>what is <slot predicate="contact_to_call" type="individual"/> number</item>
+      <item>what is <slot predicate="contact_to_call" type="individual"/>'s number</item>
+      <item>what is <slot predicate="contact_to_call" type="individual"/> <slot predicate="phone_type_to_call" type="individual"/></item>
+      <item>what is <slot predicate="contact_to_call" type="individual"/>'s <slot predicate="phone_type_to_call" type="individual"/></item>
+    </one-of>
+  </question>
+
+  <question type="goal" speaker="system">What would you like do?</question>
+  <question type="wh_question" predicate="contact_to_call" speaker="system">which contact</question>
+  <question type="wh_question" predicate="phone_type_to_call" speaker="system">which phone</question>
+
+  <question speaker="all" predicate="phone_number_of_contact" type="wh_question">the contact's phone number</question>
+
+
+  <individual name="work">
+	<one-of>
+	  <item>work</item>
+	  <item>work number</item>
+	  <item>work phone</item>
+	</one-of>
+  </individual>
+  <individual name="home">
+	<one-of>
+	  <item>home</item>
+	  <item>home number</item>
+	  <item>home phone</item>
+	</one-of>
+  </individual>
+  <individual name="mobile">
+	<one-of>
+	  <item>mobile</item>
+	  <item>mobile number</item>
+	  <item>mobile phone</item>
+	</one-of>
+  </individual>
+
+  <individual name="contact_john">
+    <one-of>
+      <item>John</item>	
+		<item>john</item>
+		<item>John's</item>
+		<item>john's</item>
+    </one-of>
+  </individual>
+
+  <individual name="contact_mary">
+    <one-of>
+      <item>Mary</item>	
+		<item>mary</item>
+		<item>Mary's</item>
+		<item>mary's</item>
+    </one-of>
+  </individual>
+
+  <report action="make_call" status="ended">Calling <slot predicate="contact_to_call"/>'s <slot predicate="phone_type_to_call"/></report>
+  <answer speaker="system" predicate="phone_number_of_contact">It's <slot predicate="phone_number_of_contact"/></answer>
+
+</grammar>

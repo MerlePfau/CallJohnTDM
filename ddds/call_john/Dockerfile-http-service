@@ -1,0 +1,6 @@
+FROM python:3.7
+
+COPY requirements-http-service.txt .
+RUN pip install -r requirements-http-service.txt && rm requirements-http-service.txt
+
+COPY / /src/
